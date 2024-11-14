@@ -16,11 +16,9 @@ From: nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
 
     # Create symlink for python3 to python
     ln -s /usr/bin/python3 /usr/bin/python
-    pwd
-    ls
     cd /workspace
-    ls
-
+    git clone https://github.com/sabuj7177/RepLLaMa-CSCE-689.git
+    cd RepLLaMa-CSCE-689
     pip3 install -r requirements.txt
     #pip3 install transformers datasets peft deepspeed accelerate
     #pip3 install faiss-gpu-cu12

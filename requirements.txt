@@ -1,0 +1,8 @@
+accelerate==1.1.1
+datasets==3.1.0
+deepspeed==0.15.4
+faiss-cpu==1.7.2
+peft==0.13.2
+-e git+https://github.com/texttron/tevatron.git@6b6dab6e33c1214d603b4057877c7f1f89abe1cf#egg=tevatron
+tqdm==4.67.0
+transformers==4.37.2

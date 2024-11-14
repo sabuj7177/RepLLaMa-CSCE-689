@@ -1,0 +1,39 @@
+# Use a base image that includes CUDA 11.8
+Bootstrap: docker
+From: nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
+
+%post
+    # Update package lists and install dependencies
+    apt-get update && apt-get install -y \
+        python3-pip \
+        python3-dev \
+        git \
+        && rm -rf /var/lib/apt/lists/*
+
+    mkdir -p /workspace
+
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+    # Create symlink for python3 to python
+    ln -s /usr/bin/python3 /usr/bin/python
+    pwd
+    ls
+    cd /workspace
+    ls
+
+    pip3 install -r requirements.txt
+    #pip3 install transformers datasets peft deepspeed accelerate
+    #pip3 install faiss-gpu-cu12
+    #cd /workspace
+    #git clone https://github.com/texttron/tevatron.git
+    #cd /workspace/tevatron
+    #pip install -e .
+
+%environment
+    # Set the working directory to /workspace
+    export WORKDIR=/workspace
+    pwd
+
+%runscript
+    # This section is optional. You can define a run script if needed.
+    echo "Container is ready. To run, use: singularity exec <image_name> <command>"
